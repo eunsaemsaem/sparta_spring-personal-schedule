@@ -4,6 +4,7 @@ import com.sparta.springpersonalboard.dto.BoardRequestDto;
 import com.sparta.springpersonalboard.dto.BoardResponseDto;
 import com.sparta.springpersonalboard.entity.Board;
 import com.sparta.springpersonalboard.repository.BoardRepository;
+import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,6 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-//    @Transactional
     public BoardResponseDto createBoard(BoardRequestDto boardRequestDto) {
         Board board = new Board(boardRequestDto);
 
@@ -41,9 +41,15 @@ public class BoardService {
 
 
     @Transactional
-    public Long updateBaord(Long id, BoardRequestDto requestDto) {
+    public Long updateBaord(Long id, String password, BoardRequestDto requestDto) {
         Board board = findBoard(id);
-        board.update(requestDto);
+        password = requestDto.getPassword();
+
+        if (password.equals(board.getPassword())) {
+            board.update(requestDto);
+        } else {
+            System.out.println("Password does not match");
+        }
         return id;
     }
 
