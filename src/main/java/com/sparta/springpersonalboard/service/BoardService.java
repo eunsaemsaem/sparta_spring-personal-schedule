@@ -7,6 +7,7 @@ import com.sparta.springpersonalboard.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,10 @@ public class BoardService {
         Optional<Board> optionalBoard = boardRepository.findById(id);
         BoardResponseDto boardResponseDto = new BoardResponseDto(optionalBoard.get());
         return boardResponseDto;
+    }
+
+    public List<BoardResponseDto> getBoards() {
+        return boardRepository.findAllByOrderByDate().stream().map(BoardResponseDto::new).toList();
     }
 
 

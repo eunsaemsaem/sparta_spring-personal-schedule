@@ -5,6 +5,8 @@ import com.sparta.springpersonalboard.dto.BoardResponseDto;
 import com.sparta.springpersonalboard.service.BoardService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class BoardController {
@@ -23,6 +25,11 @@ public class BoardController {
     @GetMapping("/schedule/{id}")
     public BoardResponseDto getBoardById(@PathVariable Long id) {
         return boardService.getBoard(id);
+    }
+
+    @GetMapping("/schedule")
+    public List<BoardResponseDto> getBoards() {
+        return boardService.getBoards();
     }
 
 
