@@ -32,6 +32,11 @@ public class BoardController {
         return boardService.getBoards();
     }
 
+    @PutMapping("/schedule/{id}")
+    public Long updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
+        return boardService.updateBaord(id, requestDto);
+    }
+
 
 
 }

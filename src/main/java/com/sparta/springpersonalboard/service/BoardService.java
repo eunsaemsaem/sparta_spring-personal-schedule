@@ -40,6 +40,18 @@ public class BoardService {
     }
 
 
+    @Transactional
+    public Long updateBaord(Long id, BoardRequestDto requestDto) {
+        Board board = findBoard(id);
+        board.update(requestDto);
+        return id;
+    }
 
 
+
+    private Board findBoard (Long id) {
+        return boardRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("선택한 일정은 존재하지 않습니다.")
+        );
+    }
 }
