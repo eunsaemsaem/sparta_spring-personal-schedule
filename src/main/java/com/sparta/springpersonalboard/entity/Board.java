@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "schedule")
 @NoArgsConstructor
-public class Board {
+public class Board extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,17 +23,12 @@ public class Board {
     private String manager;
     @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "date", nullable = false)
-    private String date;
 
     public Board(BoardRequestDto boardRequestDto) {
         this.title = boardRequestDto.getTitle();
         this.content = boardRequestDto.getContent();
         this.manager = boardRequestDto.getManager();
         this.password = boardRequestDto.getPassword();
-        this.date = boardRequestDto.getDate();
     }
-
-
 
 }

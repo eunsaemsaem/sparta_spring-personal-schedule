@@ -18,11 +18,14 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    @Transactional
+//    @Transactional
     public BoardResponseDto createBoard(BoardRequestDto boardRequestDto) {
         Board board = new Board(boardRequestDto);
+
         Board saveBoard = boardRepository.save(board); ///무슨역할?
+
         BoardResponseDto boardResponseDto = new BoardResponseDto(board);
+
         return boardResponseDto;
     }
 

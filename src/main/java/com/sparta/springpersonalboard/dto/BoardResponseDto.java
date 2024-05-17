@@ -3,6 +3,8 @@ package com.sparta.springpersonalboard.dto;
 import com.sparta.springpersonalboard.entity.Board;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class BoardResponseDto {
 
@@ -11,7 +13,7 @@ public class BoardResponseDto {
     private String content;
     private String manager;
     private String password;
-    private String date;
+    private LocalDateTime date;
 
     public BoardResponseDto(Board board) {
         this.id = board.getId();
@@ -22,12 +24,4 @@ public class BoardResponseDto {
         this.date = board.getDate();
     }
 
-    public BoardResponseDto(Long id, String title, String content, String manager, String password, String date) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.manager = manager;
-        this.password = password;
-        this.date = date;
-    }
 }
