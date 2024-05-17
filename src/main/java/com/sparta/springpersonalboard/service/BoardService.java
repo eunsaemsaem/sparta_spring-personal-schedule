@@ -47,6 +47,12 @@ public class BoardService {
         return id;
     }
 
+    public Long deleteBaord(Long id) {
+        Board board = findBoard(id);
+        boardRepository.delete(board);
+        return id;
+    }
+
 
 
     private Board findBoard (Long id) {
@@ -54,4 +60,6 @@ public class BoardService {
                 new IllegalArgumentException("선택한 일정은 존재하지 않습니다.")
         );
     }
+
+
 }
