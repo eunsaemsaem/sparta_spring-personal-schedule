@@ -41,14 +41,14 @@ public class BoardService {
 
 
     @Transactional
-    public Long updateBaord(Long id, String password, BoardRequestDto requestDto) {
+    public Long updateBaord(Long id, BoardRequestDto requestDto) {
         Board board = findBoard(id);
-        password = requestDto.getPassword();
+        String password = requestDto.getPassword();
 
         if (password.equals(board.getPassword())) {
             board.update(requestDto);
         } else {
-            System.out.println("Password does not match");
+            System.out.println("비밀번호가 일치하지 않습니다.");
         }
         return id;
     }
