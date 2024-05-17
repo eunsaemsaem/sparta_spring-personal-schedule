@@ -22,12 +22,18 @@ public class BoardService {
     public BoardResponseDto createBoard(BoardRequestDto boardRequestDto) {
         Board board = new Board(boardRequestDto);
 
-        Board saveBoard = boardRepository.save(board); ///무슨역할?
-
-        BoardResponseDto boardResponseDto = new BoardResponseDto(board);
+        Board saveBoard = boardRepository.save(board);
+        BoardResponseDto boardResponseDto = new BoardResponseDto(saveBoard);
 
         return boardResponseDto;
     }
+
+    public BoardResponseDto getBoard(Long id) {
+        Optional<Board> optionalBoard = boardRepository.findById(id);
+        BoardResponseDto boardResponseDto = new BoardResponseDto(optionalBoard.get());
+        return boardResponseDto;
+    }
+
 
 
 

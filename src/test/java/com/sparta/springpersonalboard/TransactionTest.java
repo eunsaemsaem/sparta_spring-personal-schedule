@@ -30,7 +30,6 @@ public class TransactionTest {
         board.setContent("contentb");
         board.setManager("managerb");
         board.setPassword("passwordb");
-        board.setDate("dateb");
 
         em.persist(board);
     }

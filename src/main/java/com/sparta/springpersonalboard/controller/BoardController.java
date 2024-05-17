@@ -20,6 +20,11 @@ public class BoardController {
         return boardService.createBoard(boardRequestDto);
     }
 
+    @GetMapping("/schedule/{id}")
+    public BoardResponseDto getBoardById(@PathVariable Long id) {
+        return boardService.getBoard(id);
+    }
+
 
 
 }
