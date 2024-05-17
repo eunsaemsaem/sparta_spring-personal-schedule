@@ -1,14 +1,17 @@
 package com.sparta.springpersonalboard.repository;
 
 import com.sparta.springpersonalboard.entity.Board;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+@Repository
+public interface BoardRepository extends JpaRepository<Board, Long> {
+}
 
+/*
 @Repository
 public class BoardRepository {
 
@@ -41,4 +44,6 @@ public class BoardRepository {
 
         return board;
     }
+
 }
+*/
