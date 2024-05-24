@@ -11,17 +11,20 @@ import java.util.List;
 @RequestMapping("/api")
 public class BoardController {
 
+    /* initialize */
     private final BoardService boardService;
 
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
 
+    /* Create */
     @PostMapping("/schedule")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto boardRequestDto) {
         return boardService.createBoard(boardRequestDto);
     }
 
+    /* Read */
     @GetMapping("/schedule/{id}")
     public BoardResponseDto getBoardById(@PathVariable Long id) {
         return boardService.getBoard(id);
@@ -32,16 +35,16 @@ public class BoardController {
         return boardService.getBoards();
     }
 
+    /* Update */
     @PutMapping("/schedule/{id}")
     public Long updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
         return boardService.updateBaord(id, requestDto);
     }
 
+    /* Delete */
     @DeleteMapping("/schedule/{id}")
     public Long deleteBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
         return boardService.deleteBaord(id, requestDto);
     }
-
-
 
 }

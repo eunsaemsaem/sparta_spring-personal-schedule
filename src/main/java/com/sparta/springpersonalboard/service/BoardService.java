@@ -14,12 +14,14 @@ import java.util.Optional;
 @Service
 public class BoardService {
 
+    /* initialize */
     private final BoardRepository boardRepository;
 
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
+    /* Create */
     public BoardResponseDto createBoard(BoardRequestDto boardRequestDto) {
         Board board = new Board(boardRequestDto);
 
@@ -29,6 +31,7 @@ public class BoardService {
         return boardResponseDto;
     }
 
+    /* Read */
     public BoardResponseDto getBoard(Long id) {
         Optional<Board> optionalBoard = boardRepository.findById(id);
         BoardResponseDto boardResponseDto = new BoardResponseDto(optionalBoard.get());
@@ -40,6 +43,7 @@ public class BoardService {
     }
 
 
+    /* Update */
     @Transactional
     public Long updateBaord(Long id, BoardRequestDto requestDto) {
         Board board = findBoard(id);
@@ -53,6 +57,7 @@ public class BoardService {
         return id;
     }
 
+    /* Delete */
     public Long deleteBaord(Long id, BoardRequestDto requestDto) {
         Board board = findBoard(id);
         String password = requestDto.getPassword();
@@ -65,13 +70,11 @@ public class BoardService {
         return id;
     }
 
-
-
+    /* id로 일정 조회 메서드 */
     private Board findBoard (Long id) {
         return boardRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("선택한 일정은 존재하지 않습니다.")
         );
     }
-
 
 }
