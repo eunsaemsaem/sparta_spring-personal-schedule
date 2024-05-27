@@ -4,10 +4,7 @@ import com.sparta.springpersonalboard.dto.CommentRequestDto;
 import com.sparta.springpersonalboard.dto.CommentResponseDto;
 import com.sparta.springpersonalboard.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -21,6 +18,16 @@ public class CommentController {
     public CommentResponseDto createComment(@RequestBody CommentRequestDto requestDto) {
         return commentService.createComment(requestDto);
     }
+
+    /* Read */
+
+    /* Update */
+    @PutMapping("/comment/{id}")
+    public Long updateComment (@PathVariable("id") Long id, @RequestBody CommentRequestDto requestDto) {
+        return commentService.updateComment(id, requestDto);
+    }
+
+    /* Delete */
 
 
 }

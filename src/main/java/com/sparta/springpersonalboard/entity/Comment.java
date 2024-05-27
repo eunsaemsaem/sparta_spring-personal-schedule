@@ -36,4 +36,7 @@ public class Comment extends CommentTime {
         this.userId = requestDto.getUserId();
     }
 
+    public void update(CommentRequestDto requestDto) {
+        this.content = requestDto.getContent();
+    }
 }
