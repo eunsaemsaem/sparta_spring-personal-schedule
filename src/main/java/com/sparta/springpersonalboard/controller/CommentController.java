@@ -22,9 +22,11 @@ public class CommentController {
     /* Read */
 
     /* Update */
-    @PutMapping("/comment/{id}")
-    public Long updateComment (@PathVariable("id") Long id, @RequestBody CommentRequestDto requestDto) {
-        return commentService.updateComment(id, requestDto);
+    @PutMapping("/board/{boardId}/comment/{commentId}")
+    public String updateComment (@PathVariable("boardId") Long boardId,
+                               @PathVariable("commentId") Long commentId,
+                               @RequestBody CommentRequestDto requestDto) {
+        return commentService.updateComment(boardId, commentId, requestDto);
     }
 
     /* Delete */
