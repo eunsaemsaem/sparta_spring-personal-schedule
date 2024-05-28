@@ -28,6 +28,10 @@ public class CommentController {
     }
 
     /* Delete */
+    @DeleteMapping("/comment/{id}")
+    public Long deleteComment (@PathVariable Long id, @RequestBody CommentRequestDto requestDto) {
+        return commentService.deleteComment(id, requestDto);
+    }
 
 
 }
