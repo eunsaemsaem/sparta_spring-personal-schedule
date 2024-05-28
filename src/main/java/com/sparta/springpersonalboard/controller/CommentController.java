@@ -14,9 +14,9 @@ public class CommentController {
     private final CommentService commentService;
 
     /* Create */
-    @PostMapping("/comments")
-    public CommentResponseDto createComment(@RequestBody CommentRequestDto requestDto) {
-        return commentService.createComment(requestDto);
+    @PostMapping("/board/{boardId}/comment")
+    public CommentResponseDto createComment(@RequestBody CommentRequestDto requestDto, @PathVariable Long boardId) {
+        return commentService.createComment(requestDto, boardId);
     }
 
     /* Read */

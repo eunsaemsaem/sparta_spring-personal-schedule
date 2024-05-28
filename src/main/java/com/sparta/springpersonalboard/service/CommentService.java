@@ -2,6 +2,7 @@ package com.sparta.springpersonalboard.service;
 
 import com.sparta.springpersonalboard.dto.CommentRequestDto;
 import com.sparta.springpersonalboard.dto.CommentResponseDto;
+import com.sparta.springpersonalboard.entity.Board;
 import com.sparta.springpersonalboard.entity.Comment;
 import com.sparta.springpersonalboard.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,24 +15,21 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommentService {
 
     private final CommentRepository commentRepository;
+    private final BoardService boardService; ////
 
     /* Create */
-    public CommentResponseDto createComment(CommentRequestDto commentRequestDto) {
-        Comment comment = commentRepository.save(new Comment(commentRequestDto));
+    public CommentResponseDto createComment(CommentRequestDto commentRequestDto, Long boardId) {
+        Board board = boardService.findBoard(boardId); // DB에 있는지 먼저 확인
+        Comment comment = new Comment(commentRequestDto, board); // 있으면 -> 연관관계 맺기
 
         // 예외처리
-        // 선택한 일정의 ID를 입력 받지 않은 경우
-        if (comment.getId() == null) {
-            throw new IllegalArgumentException("선택한 일정의 아이디를 입력해주세요.");
-        }
-        // 댓글 내용이 비어 있는 경우
-        else if (comment.getContent().isEmpty()) {
+        if (comment.getContent().isEmpty()) { // 댓글 내용이 비어 있는 경우
             throw new IllegalArgumentException("댓글 내용을 작성해주세요");
-        }
-        else if (comment.getBoard() == null) {
+        } else if (comment.getBoard() == null) { // 일정이 DB에 저장되지 않은 경우
             throw new IllegalArgumentException("등록된 일정을 선택해주세요.");
         }
 
+        commentRepository.save(comment); // 저장
         return new CommentResponseDto(comment);
     }
 

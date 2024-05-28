@@ -31,9 +31,10 @@ public class Comment extends CommentTime {
     private Board board;
 
     /* constructor */
-    public Comment(CommentRequestDto requestDto) {
+    public Comment(CommentRequestDto requestDto, Board board) {
         this.content = requestDto.getContent();
         this.userId = requestDto.getUserId();
+        this.board = board;
     }
 
     public void update(CommentRequestDto requestDto) {

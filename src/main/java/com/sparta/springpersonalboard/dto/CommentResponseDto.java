@@ -1,19 +1,21 @@
 package com.sparta.springpersonalboard.dto;
 
 import com.sparta.springpersonalboard.entity.Comment;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class CommentResponseDto {
     private Long id;
     private String content;
-    private String userid;
+    private String userId;
     private LocalDateTime commentAt;
 
     public CommentResponseDto(Comment comment) {
         this.id = comment.getId();
         this.content = comment.getContent();
-        this.userid = comment.getUserId();
+        this.userId = comment.getUserId();
         this.commentAt = comment.getCommentAt();
     }
 }

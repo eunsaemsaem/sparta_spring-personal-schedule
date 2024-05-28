@@ -71,7 +71,7 @@ public class BoardService {
     }
 
     /* id로 일정 조회 메서드 */
-    private Board findBoard (Long id) {
+    public Board findBoard(Long id) {
         return boardRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("선택한 일정은 존재하지 않습니다.")
         );
