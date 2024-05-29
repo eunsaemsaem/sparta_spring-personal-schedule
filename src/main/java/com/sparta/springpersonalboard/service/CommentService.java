@@ -36,7 +36,6 @@ public class CommentService {
     /* Update */
     @Transactional
     public String updateComment(Long boardId, Long commentId, CommentRequestDto requestDto) {
-        System.out.println("here");
         Board board = boardService.findBoard(boardId);
         // board와 연관관계? - 선택한 일정의 댓글이어야 하는데, 일정과 상관없이 수정됨
         // requestDto에 boardId를 추가
@@ -61,12 +60,16 @@ public class CommentService {
     }
 
     /* Delete */
-    public Long deleteComment(Long id, CommentRequestDto requestDto) {
-        Comment comment = findComment(id);
-        String user = requestDto.getUserId();
+    public Long deleteComment(Long boardId, Long commentId, CommentRequestDto requestDto) {
+        Board board = boardService.findBoard(boardId);
+        Comment comment = findComment(commentId);
 
         // 예외처리
-        if (comment.getId() == null) { // 선택한 일정이나 댓글의 ID를 입력받지 않은 경우
+        String user = requestDto.getUserId();
+        if (board.getId() != comment.getBoard().getId()) { // 선택한 일정과 댓글이 연관관계가 아닐 경우
+            throw new IllegalArgumentException ("올바르지 않은 선택입니다.");
+        }
+        else if (comment.getId() == null) { // 선택한 일정이나 댓글의 ID를 입력받지 않은 경우
             throw new IllegalArgumentException("일정 혹은 댓글의 ID를 입력해주세요.");
         }
         else if (comment.getBoard() == null) { // 일정이나 댓글이 DB에 저장되지 않은 경우
@@ -81,7 +84,7 @@ public class CommentService {
         String value = HttpStatus.valueOf(200).toString();
         System.out.println("삭제를 성공했습니다." + "status: " + value);
 
-        return id;
+        return commentId;
     }
 
 
