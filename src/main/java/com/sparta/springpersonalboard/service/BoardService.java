@@ -4,6 +4,7 @@ import com.sparta.springpersonalboard.dto.BoardRequestDto;
 import com.sparta.springpersonalboard.dto.BoardResponseDto;
 import com.sparta.springpersonalboard.entity.Board;
 import com.sparta.springpersonalboard.repository.BoardRepository;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,14 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BoardService {
 
     /* initialize */
     private final BoardRepository boardRepository;
 
-    public BoardService(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
 
     /* Create */
     public BoardResponseDto createBoard(BoardRequestDto boardRequestDto) {
