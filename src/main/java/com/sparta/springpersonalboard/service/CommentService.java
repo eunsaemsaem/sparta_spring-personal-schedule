@@ -22,13 +22,6 @@ public class CommentService {
         Board board = boardService.findBoard(boardId); // DB에 있는지 먼저 확인
         Comment comment = new Comment(commentRequestDto, board); // 있으면 -> 연관관계 맺기
 
-        // 예외처리
-        if (comment.getContent().isEmpty()) { // 댓글 내용이 비어 있는 경우
-            throw new IllegalArgumentException("댓글 내용을 작성해주세요");
-        } else if (comment.getBoard() == null) { // 일정이 DB에 저장되지 않은 경우
-            throw new IllegalArgumentException("등록된 일정을 선택해주세요.");
-        }
-
         commentRepository.save(comment); // 저장
         return new CommentResponseDto(comment);
     }

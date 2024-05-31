@@ -1,6 +1,6 @@
 package com.sparta.springpersonalboard.service;
 
-import com.sparta.springpersonalboard.dto.UserRequestDto;
+import com.sparta.springpersonalboard.dto.SignupRequestDto;
 import com.sparta.springpersonalboard.dto.UserResponseDto;
 import com.sparta.springpersonalboard.entity.User;
 import com.sparta.springpersonalboard.entity.UserRoleEnum;
@@ -22,7 +22,7 @@ public class UserService {
     private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
 
 
-    public UserResponseDto signup(UserRequestDto requestDto) {
+    public UserResponseDto signup(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
         String nickname = requestDto.getNickname();
         String password = requestDto.getPassword();

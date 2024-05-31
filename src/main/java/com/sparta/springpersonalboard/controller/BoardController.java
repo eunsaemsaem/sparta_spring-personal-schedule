@@ -3,6 +3,7 @@ package com.sparta.springpersonalboard.controller;
 import com.sparta.springpersonalboard.dto.BoardRequestDto;
 import com.sparta.springpersonalboard.dto.BoardResponseDto;
 import com.sparta.springpersonalboard.service.BoardService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class BoardController {
 
     /* Create */
     @PostMapping("/schedule")
-    public BoardResponseDto createBoard(@RequestBody BoardRequestDto boardRequestDto) {
+    public BoardResponseDto createBoard(@Valid @RequestBody BoardRequestDto boardRequestDto) {
         return boardService.createBoard(boardRequestDto);
     }
 
@@ -37,13 +38,13 @@ public class BoardController {
 
     /* Update */
     @PutMapping("/schedule/{id}")
-    public Long updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
+    public Long updateBoard(@PathVariable Long id, @Valid @RequestBody BoardRequestDto requestDto) {
         return boardService.updateBaord(id, requestDto);
     }
 
     /* Delete */
     @DeleteMapping("/schedule/{id}")
-    public Long deleteBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
+    public Long deleteBoard(@PathVariable Long id, @Valid @RequestBody BoardRequestDto requestDto) {
         return boardService.deleteBaord(id, requestDto);
     }
 
