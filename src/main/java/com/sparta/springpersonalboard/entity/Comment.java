@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "comments")
 @NoArgsConstructor
-public class Comment extends CommentTime {
+public class Comment extends CreateAt {
 
     /* column */
     @Id

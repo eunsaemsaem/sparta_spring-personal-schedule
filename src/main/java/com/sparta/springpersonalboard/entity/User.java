@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Table(name = "users")
-public class User extends UserTime{
+public class User extends CreateAt{
     /* Column */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +34,5 @@ public class User extends UserTime{
         this.password = password;
         this.role = role;
     }
+
 }

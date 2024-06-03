@@ -12,14 +12,14 @@ public class BoardResponseDto {
     private String title;
     private String content;
     private String manager;
-    private LocalDateTime date;
+    private LocalDateTime createAt;
 
     public BoardResponseDto(Board board) {
         this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.manager = board.getManager();
-        this.date = board.getDate();
+        this.createAt = board.getCreateAt();
     }
 
 }

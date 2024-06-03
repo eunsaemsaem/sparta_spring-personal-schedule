@@ -3,12 +3,10 @@ package com.sparta.springpersonalboard.dto;
 import lombok.Getter;
 
 @Getter
-public class UserResponseDto {
+public class SignupResponseDto {
     private String message;
-    private String token;
 
-    public UserResponseDto(String message, String token) {
+    public SignupResponseDto(String message) {
         this.message = message;
-        this.token = token;
     }
 }

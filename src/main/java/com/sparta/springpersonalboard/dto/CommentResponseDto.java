@@ -10,12 +10,12 @@ public class CommentResponseDto {
     private Long id;
     private String content;
     private String userId;
-    private LocalDateTime commentAt;
+    private LocalDateTime createAt;
 
     public CommentResponseDto(Comment comment) {
         this.id = comment.getId();
         this.content = comment.getContent();
         this.userId = comment.getUserId();
-        this.commentAt = comment.getCommentAt();
+        this.createAt = comment.getCreateAt();
     }
 }
