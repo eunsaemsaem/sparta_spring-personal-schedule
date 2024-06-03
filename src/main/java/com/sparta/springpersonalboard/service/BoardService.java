@@ -38,7 +38,7 @@ public class BoardService {
     }
 
     public List<BoardResponseDto> getBoards() {
-        return boardRepository.findAllByOrderByDate().stream().map(BoardResponseDto::new).toList();
+        return boardRepository.findAllByOrderByCreateAt().stream().map(BoardResponseDto::new).toList();
     }
 
 

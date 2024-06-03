@@ -19,7 +19,7 @@ import com.sparta.springpersonalboard.jwt.*;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/autoenticate")
+    @PostMapping("/authenticate")
     public String CreateToken(@RequestBody UserRequestDto requestDto) throws Exception {
         if("user".equals(requestDto.getUsername()) && "password".equals(requestDto.getPassword())) {
             return JwtUtil.generateToken(requestDto.getUsername());
@@ -52,7 +52,8 @@ public class UserController {
         }
     }
 
-    /* Sign in */
+    /* Signin */
+    @PostMapping("/login")
     public ResponseEntity<UserResponseDto> login (@RequestBody UserRequestDto requestDto) {
         try {
             User user = userService.login(requestDto.getUsername(), requestDto.getPassword());
